@@ -1,0 +1,16 @@
+E:\source\repos\nguyendinhquan\ModelEF\bin\Debug\ModelEF.dll.config
+E:\source\repos\nguyendinhquan\ModelEF\bin\Debug\ModelEF.dll
+E:\source\repos\nguyendinhquan\ModelEF\bin\Debug\ModelEF.pdb
+E:\source\repos\nguyendinhquan\ModelEF\bin\Debug\EntityFramework.dll
+E:\source\repos\nguyendinhquan\ModelEF\bin\Debug\EntityFramework.SqlServer.dll
+E:\source\repos\nguyendinhquan\ModelEF\bin\Debug\EntityFramework.xml
+E:\source\repos\nguyendinhquan\ModelEF\bin\Debug\EntityFramework.SqlServer.xml
+E:\source\repos\nguyendinhquan\ModelEF\obj\Debug\ModelEF.csprojAssemblyReference.cache
+E:\source\repos\nguyendinhquan\ModelEF\obj\Debug\ModelEF.csproj.CoreCompileInputs.cache
+E:\source\repos\nguyendinhquan\ModelEF\obj\Debug\ModelEF.csproj.CopyComplete
+E:\source\repos\nguyendinhquan\ModelEF\obj\Debug\ModelEF.dll
+E:\source\repos\nguyendinhquan\ModelEF\obj\Debug\ModelEF.pdb
+E:\source\repos\nguyendinhquan\ModelEF\bin\Debug\PagedList.dll
+E:\source\repos\nguyendinhquan\ModelEF\bin\Debug\PagedList.Mvc.dll
+E:\source\repos\nguyendinhquan\ModelEF\bin\Debug\PagedList.xml
+E:\source\repos\nguyendinhquan\ModelEF\bin\Debug\PagedList.Mvc.xml

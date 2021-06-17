@@ -1,0 +1,145 @@
+﻿@model TestUngDung.Models.Login
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div id="content2" class="dh">
+    <div id="content1" class="dh">
+
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="~/Content/demo_signup.css">
+        <style>
+            #content1 {
+                margin-top: 5%;
+            }
+        </style>
+
+
+
+
+
+
+        <div class=" container">
+            <div class="account-login">
+                <fieldset class="col2-set">
+                    <div class="col-1 new-users">
+                        <strong>Đăng ký</strong>
+                        <div class="content">
+                            <p class="line_cus">Tạo tài khoản để quản lý đơn hàng, và các thông tin thanh toán, gửi hàng một cách đơn giản hơn.</p>
+                            <div class="buttons-set">
+                                <button class="button create-account" onclick="window.location.href='?thamso=dang_ky'"><span>Tạo tài khoản</span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2 registered-users">
+                        <div class="content">
+
+                            @* <form accept-charset="utf-8" action="?thamso=do" id="customer_login" method="post">
+                                    <input name="FormType" type="hidden" value="customer_login">
+                                    <input name="utf8" type="hidden" value="true">
+                                    <strong>Đăng nhập</strong>
+                                    <p class="line_cus">Nếu bạn có tài khoản, hãy đăng nhập dưới đây.</p>
+
+                                    <ul class="form-list">
+                                        <li>
+                                            <label for="email">Email<span class="required">*</span></label>
+                                            <br>
+                                            <input type="text" class="input-text" value="" title="email" name="username" id="email" placeholder="Email">
+                                        </li>
+                                        <li>
+                                            <label for="pass">Mật khẩu <span class="required">*</span></label>
+                                            <br>
+
+                                            <input type="password" value="" class="input-text" title="Mật khẩu" name="password" id="pass" placeholder="Mật khẩu">
+                                        </li>
+                                    </ul>
+                                    <p class="required">* Bắt buộc</p>
+                                    <div class="buttons-set">
+                                        <button id="send2" type="submit" name="submit" class="button login"><span>Đăng nhập</span></button>
+                                        <a href="#recover" onclick="showRecoverPasswordForm();return false;" id="RecoverPassword">Mất mật khẩu?</a>
+                                    </div>
+                                    <div class="login_isocial">
+                                        <script>function loginFacebook() { var a = { client_id: "947410958642584", redirect_uri: "https://store.mysapo.net/account/facebook_account_callback", state: JSON.stringify({ redirect_url: window.location.href }), scope: "email", response_type: "code" }, b = "https://www.facebook.com/v3.2/dialog/oauth" + encodeURIParams(a, !0); window.location.href = b } function loginGoogle() { var a = { client_id: "885968593373-197u9i4pte44vmvcc0j50pvhlfvl27ds.apps.googleusercontent.com", redirect_uri: "https://store.mysapo.net/account/google_account_callback", scope: "email profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile", access_type: "online", state: JSON.stringify({ redirect_url: window.location.href }), response_type: "code" }, b = "https://accounts.google.com/o/oauth2/v2/auth" + encodeURIParams(a, !0); window.location.href = b } function encodeURIParams(a, b) { var c = []; for (var d in a) if (a.hasOwnProperty(d)) { var e = a[d]; null != e && c.push(encodeURIComponent(d) + "=" + encodeURIComponent(e)) } return 0 == c.length ? "" : (b ? "?" : "") + c.join("&") }</script>
+                                        <a href="javascript:void(0)" class="social-login--facebook" onclick="loginFacebook()"><img width="129px" height="37px" alt="facebook-login-button" src="//bizweb.dktcdn.net/assets/admin/images/login/fb-btn.svg"></a>
+                                        <a href="javascript:void(0)" class="social-login--google" onclick="loginGoogle()"><img width="129px" height="37px" alt="google-login-button" src="//bizweb.dktcdn.net/assets/admin/images/login/gp-btn.svg"></a>
+                                    </div>
+                                </form>*@
+                            @using (Html.BeginForm(new { @id = "customer_login" }))
+                            {
+                                <input name="FormType" type="hidden" value="customer_login">
+                                <input name="utf8" type="hidden" value="true">
+                                <strong>Đăng nhập</strong>
+                                <p class="line_cus">Nếu bạn có tài khoản, hãy đăng nhập dưới đây.</p>
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, null, new { @class = "alert alert-danger" })
+
+
+                                <ul class="form-list">
+                                    <li>
+                                        <label for="email">Email<span class="required">*</span></label>
+                                        <br>
+                                        @*<input type="text" class="input-text" value="" title="email" name="username" id="email" placeholder="Email">*@
+                                        @Html.TextBoxFor(model => model.UserName, new { @placeholder = "Tài Khoản", @autofocus = "autofocus", @class = "input-text" })
+                                    </li>
+                                    <li>
+                                        <label for="pass">Mật khẩu <span class="required">*</span></label>
+                                        <br>
+                                        @Html.TextBoxFor(model => model.Password, new { @placeholder = "Mật Khẩu", @type = "password", @class = "input-text" })
+                                        @*<input type="password" value="" class="input-text" title="Mật khẩu" name="password" id="pass" placeholder="Mật khẩu">*@
+                                    </li>
+                                </ul>
+                                <p class="required">* Bắt buộc</p>
+                                <div class="buttons-set">
+                                    <button id="send2" type="submit" name="submit" class="button login"><span>Đăng nhập</span></button>
+                                    <a href="#recover" onclick="showRecoverPasswordForm();return false;" id="RecoverPassword">Mất mật khẩu?</a>
+                                </div>
+                                <div class="login_isocial">
+                                    <script>function loginFacebook() { var a = { client_id: "947410958642584", redirect_uri: "https://store.mysapo.net/account/facebook_account_callback", state: JSON.stringify({ redirect_url: window.location.href }), scope: "email", response_type: "code" }, b = "https://www.facebook.com/v3.2/dialog/oauth" + encodeURIParams(a, !0); window.location.href = b } function loginGoogle() { var a = { client_id: "885968593373-197u9i4pte44vmvcc0j50pvhlfvl27ds.apps.googleusercontent.com", redirect_uri: "https://store.mysapo.net/account/google_account_callback", scope: "email profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile", access_type: "online", state: JSON.stringify({ redirect_url: window.location.href }), response_type: "code" }, b = "https://accounts.google.com/o/oauth2/v2/auth" + encodeURIParams(a, !0); window.location.href = b } function encodeURIParams(a, b) { var c = []; for (var d in a) if (a.hasOwnProperty(d)) { var e = a[d]; null != e && c.push(encodeURIComponent(d) + "=" + encodeURIComponent(e)) } return 0 == c.length ? "" : (b ? "?" : "") + c.join("&") }</script>
+                                    <a href="javascript:void(0)" class="social-login--facebook" onclick="loginFacebook()"><img width="129px" height="37px" alt="facebook-login-button" src="//bizweb.dktcdn.net/assets/admin/images/login/fb-btn.svg"></a>
+                                    <a href="javascript:void(0)" class="social-login--google" onclick="loginGoogle()"><img width="129px" height="37px" alt="google-login-button" src="//bizweb.dktcdn.net/assets/admin/images/login/gp-btn.svg"></a>
+                                </div>
+                            }
+
+                            <div id="recover_password" style="display: none;">
+                                <strong>Đặt lại mật khẩu</strong>
+                                <p>Chúng tôi sẽ gửi cho bạn một email để kích hoạt việc đặt lại mật khẩu.</p>
+                                <form accept-charset="utf-8" action="/account/recover" id="recover_customer_password" method="post">
+                                    <input name="FormType" type="hidden" value="recover_customer_password">
+                                    <input name="utf8" type="hidden" value="true">
+
+
+                                    <ul class="form-list">
+                                        <li>
+                                            <label for="email">Email<span class="required">*</span></label>
+                                            <br>
+                                            <input type="email" class="input-text" value="" title="email" name="email" id="recover-email" placeholder="Email">
+                                        </li>
+                                    </ul>
+                                    <div class="buttons-set">
+                                        <span>
+                                            <input type="submit" class="button set_pss" value="Gửi">
+                                        </span>
+                                        hoặc <a href="#" onclick="hideRecoverPasswordForm();return false;">Hủy</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            @* <div class="container-fluid " id="container">
+                    <canvas class=" sketch" height="199" width="1366" style="height: 100%; width: 1366px;"></canvas>
+                    <canvas class=" sketch" height="942" width="1920" style="height: 754px; width: 1536px;"></canvas>
+                </div>*@
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sketch.js/1.1/sketch.min.js" integrity="sha512-LTMDwOS1uIqLfM6pYVYSmc8keUHHOrTDN0BAlP14HYe/hRpLu2q8bl3lWV9mQ5cpeMexobHiwhhHl+7qJOaxFg==" crossorigin="anonymous"></script>
+        <script src="/DEMO_WEB_ORDER/banhang/chuc_nang/app.js"></script>
+
+    </div>
+</div>

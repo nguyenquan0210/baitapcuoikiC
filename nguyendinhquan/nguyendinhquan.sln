@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUngDung", "TestUngDung\TestUngDung.csproj", "{1649C9A9-68A5-44FB-B703-4435E41604FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelEF", "ModelEF\ModelEF.csproj", "{1AD45F3B-0C9A-482E-878E-5F26584BDA21}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1649C9A9-68A5-44FB-B703-4435E41604FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1649C9A9-68A5-44FB-B703-4435E41604FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1649C9A9-68A5-44FB-B703-4435E41604FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1649C9A9-68A5-44FB-B703-4435E41604FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AD45F3B-0C9A-482E-878E-5F26584BDA21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AD45F3B-0C9A-482E-878E-5F26584BDA21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AD45F3B-0C9A-482E-878E-5F26584BDA21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AD45F3B-0C9A-482E-878E-5F26584BDA21}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8CC3C01D-8159-44F0-8C65-D31ED1D07292}
+	EndGlobalSection
+EndGlobal

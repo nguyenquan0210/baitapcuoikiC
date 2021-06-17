@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/media1.css" rel="stylesheet" />
+    <link href="~/Content/demo.css" rel="stylesheet" />
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <link href="~/Content/appp1.css" rel="stylesheet" />
+
+
+    <link href="~/Content/main2.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #cffed0b3;
+        }
+
+        ul.nav_main li a.active {
+            color: #fff;
+            background: #18d864;
+            border-radius: 5px;
+        }
+
+        .b_tab {
+            background-color: #ffffff00;
+        }
+
+        .tab-content {
+            background-color: #ffffff73;
+        }
+
+        td, th {
+            border: #bdbdbd solid 0px;
+            background: #ffffff00;
+        }
+
+        .newsletter-wrapper {
+            margin-top: 50px;
+            background: linear-gradient( 0deg, #2ecb66 0%, #2ecb66e0 51%, rgb(46 203 102 / 52%) 100%);
+        }
+
+        footer {
+            padding: 45px 0;
+            overflow: hidden;
+            background-color: #2ecb66;
+            position: relative;
+            color: #fff;
+        }
+        .pagination-container .pagination a {
+            border: 1px solid #ff5757 !important;
+            padding: 7px 16px !important;
+            border-radius: 50% !important;
+            display: inline-block;
+            outline: none !important;
+            color: #337ab7;
+            text-decoration: none;
+            background-color: transparent;
+            font-weight: 600;
+        }
+
+        .pagination-container .pagination .active a {
+            color: #ff5757;
+        }
+
+        .pagination-container .pagination a:hover {
+            color: #fff;
+            background: #ff5757;
+        }
+    </style>
+
+</head>
+<body>
+    @{ Html.RenderAction("MenuHeader", "Home");}
+
+
+    <div style="position: relative; top: 50px;">
+        <div id="content2" class="dh">
+            @RenderBody()
+        </div>
+        <hr />
+        <div id="footer1" class="footer">
+
+            <link rel="stylesheet" href="\DEMO_WEB_ORDER\banhang\chuc_nang\footer\footer_top.css">
+            @{ Html.RenderAction("footer", "Home");}
+
+
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

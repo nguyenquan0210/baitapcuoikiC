@@ -1,0 +1,179 @@
+﻿@using PagedList
+@using PagedList.Mvc
+
+@model PagedList.IPagedList<ModelEF.Model.UserAccount>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@section Header{
+    <i class="fa" style="color: #fc05ff;">Quản Lý Khách Hàng</i>
+}
+@using (Html.BeginForm("Index", "QLKhachHang", FormMethod.Get))
+{
+    <div class="col-lg-12 form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <a class="btn btn-compose" href="javascript:history.go(-1)">Quay lại</a>
+            </div>
+
+            <div class="col-md-4">
+                <input type="search" value="@ViewBag.SearchString" name="searchString" placeholder="Nhập từ khóa cần tìm kiếm" class="form-control" />
+
+
+            </div>
+            <div class="col-md-2">
+                <input type="submit" value="Tìm kiếm" class="btn btn-danger" />
+
+            </div>
+        </div>
+
+    </div>
+}
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div class="card ">
+            <div class="card-header">
+                <h4 class="card-title"> Khách Hàng</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th>STT</th>
+                            <th>
+                                ID
+                            </th>
+                            <th>
+                                Tên Tài Khoản
+                            </th>
+                           
+                            <th>
+                                Trạng Thái
+                            </th>
+                            <th>Thao Tác</th>
+
+
+                        </tr>
+                        @{ var i = 1; }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@i</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserName)
+                                </td>
+
+                                
+                                <td>
+                                    @{var duyet = "";
+                                        if (item.Status == 0)
+                                        {
+                                            duyet = "Bình thường";
+                                        }
+                                        else
+                                        {
+                                            if (item.Status == 1)
+                                            {
+                                                duyet = "Admin";
+
+                                            }
+                                            else
+                                            {
+                                                duyet = "Bị chặn";
+                                            }
+                                        }
+                                    }
+                                    @duyet
+                                </td>
+
+                                <td class="thaotac" style="text-align: center;">
+                                    <a class="a" href="@Url.Action("Detais", "QLKhachHang", new { id = item.ID, searchString = item.ID })"><i class='bx bx-check-square'></i></a>
+                                    <a class="a " href="@Url.Action("Update", "QLKhachHang", new { id = item.ID })"><i class='bx bxs-edit'></i></a>
+                                    <a class="a" @{ var cl = "cl"; cl = cl + i.ToString(); } id="@cl"><i class='bx bx-x-circle'></i></a>
+                                    <div id="AlertBox_@i" style="        border-radius: 0.2857rem; " class="col-xs-11 col-sm-4  alert-danger alert-with-icon slideNotify delete_none">
+
+                                        <div class=" card " style="        margin: 5px auto;box-shadow: 0 1px 20px 1px #000000;background-color: #fd77a4;">
+                                            <div class="card-header">
+                                                <h4 class="card-title"> Chặn Tài Khoản</h4>
+                                            </div>
+
+                                            <p>Bạn có muốn chặn khách hàng <b style="color:rgba(0, 255, 227, 0.87);">@item.UserName</b> không?</p>
+                                            &nbsp;
+                                            <div class="col-lg-12 ">
+                                                <div class="row">
+                                                    <div class="col-md-4"></div>
+
+                                                    <div class="col-md-4">
+                                                        <a class="btn btn-compose" @{ var cl1 = "cl1"; cl1 = cl1 + i.ToString(); } id="@cl1">Hủy</a>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        @using (Html.BeginForm("Blocked", "QLKhachHang", FormMethod.Post))
+                                                        {
+                                                            @Html.AntiForgeryToken()
+                                                            @Html.ValidationSummary(true, null, new { @class = "field-validation-error text-danger" })
+                                                            <input class="form-control" data-val="true" data-val-number="The field admin must be a number." id="ID" name="ID" type="hidden" value="@item.ID">
+                                                            <input class="form-control" data-val="true" data-val-length="The field tentk must be a string with a maximum length of 30." data-val-length-max="30" data-val-required="The tentk field is required." id="UserName" name="UserName" type="hidden" value="@item.UserName">
+                                                            <input class="form-control" data-val="true" data-val-length="The field matkhau must be a string with a maximum length of 200." data-val-length-max="200" data-val-required="The matkhau field is required." id="Password" name="Password" type="hidden" value="@item.Password">
+                                                            <input class="form-control" data-val="true" data-val-number="The field admin must be a number." id="Status" name="Status" type="hidden" value="2">
+                                                            <input type="submit" value="Chặn" class="btn btn-danger" />
+                                                            @*<a class="btn btn-success" href="@Url.Action("Update", "QLKhachHang", new { id = item.id })">Xóa</a>*@
+                                                        }
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            &nbsp;
+                                        </div>
+                                    </div>
+                                    <script>
+
+                                document.getElementById("@cl").onclick = function () {
+                                    document.getElementById("AlertBox_@i").classList.toggle('delete_none');
+                                    document.getElementById("AlertBox_@i").classList.toggle('delete_block');
+
+                                        }
+                                        document.getElementById("@cl1").onclick = function () {
+                                    document.getElementById("AlertBox_@i").classList.toggle('delete_none');
+                                     document.getElementById("AlertBox_@i").classList.toggle('delete_block');
+
+                                        }
+                                    </script>
+
+                                </td>
+                            </tr>
+                            i++;
+                        }
+
+                    </table>
+                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.SearchString }))
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    @*var tc = document.getElementById("tc");
+    tc.classList.remove("active");
+    var sp = document.getElementById("sp");
+    sp.classList.remove("active");
+    var tb = document.getElementById("tb");
+    tb.classList.remove("active");*@
+    var kh = document.getElementById("kh");
+    kh.classList.add("active");
+  @*  var hd = document.getElementById("hd");
+    hd.classList.remove("active");
+    var mn = document.getElementById("mn");
+    mn.classList.remove("active");
+    var ph = document.getElementById("ph");
+    ph.classList.remove("active");
+    var m = document.getElementById("m");
+    m.classList.remove("active");*@
+</script>

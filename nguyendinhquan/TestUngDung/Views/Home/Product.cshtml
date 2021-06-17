@@ -1,0 +1,57 @@
+﻿@using PagedList
+@using PagedList.Mvc
+
+@model PagedList.IPagedList<ModelEF.Model.san_pham>
+
+@{
+    ViewBag.Title = "Contact";
+}
+@*<h2>@ViewBag.Title.</h2>
+    <h3>@ViewBag.Message</h3>*@
+
+
+<div class="container">
+    <div class="b_tab">
+        <div class="tab-1 tab-content slider-items ajaxcol current">
+            <div class="box_ajax">
+                @{ var i = 1; }
+                @foreach (var item in Model)
+
+                {
+                    <div class="col-md-3 col-sm-4 col-xs-6 item_cl i-@i ">
+                        <div class="col-item">
+                            <div class="item-inner">
+                                <div class="product-wrapper"><div class="thumb-wrapper" onclick=""><a href="@Url.Action("Index", "Product", new { id = item.ID })" title="@item.Name"><img class="lazyload loaded" src="~/Data/images/product/@item.Image" data-src="https://bizweb.dktcdn.net/100/341/555/products/5.jpg?v=1600662243000" alt="Súp Ngô" data-was-processed="true"></a></div></div><div class="item-info">
+                                    <div class="info-inner"><h3 class="item-title"> <a href="?thamso=chi_tiet_san_pham&amp;id=24" title="@item.Name">@item.Name</a> </h3><div class="item-content"><div class="item-price"><div class="price-box"><span class="regular-price"> <span class="price">@{item.UnitCost = item.UnitCost / 1000;} @item.UnitCost.000</span> </span></div></div></div></div><div class="actions hidden-xs hidden-sm remove_html">
+
+                                        <form>
+                                            <button class="button btn-cart btn-more" title="Chi tiết sản phẩm" type="button" onclick="window.location.href='@Url.Action("Index", "Product", new { id = item.ID })'"> Chi tiết </button>
+
+
+                                            <input type="hidden" name="thamso" value="gio_hang"> <input type="hidden" name="id" value="24"> <input style="position: fixed; z-index: -1; display: none;" type="text" name="so_luong" value="1"> <button class="button btn-cart add_to_cart" title="Mua hàng">Thêm món</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                
+            </div>
+        </div>
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.SearchString }))
+        @*<div class="view-more-product"><table><tbody><tr><td colspan="3" align="center"><div class="phan_trang"><a href="?thamso=xuat_san_pham_2&amp;trang=1">1 </a></div></td></tr></tbody></table></div>*@
+    </div>
+</div>
+<script>
+
+    document.getElementById('close').onclick = function () {
+        //                   document.getElementById("popup-cart").classList.add('MyClass');
+        if (document.getElementById("popup-cart").classList.contains('popcart')) {
+            //                       document.getElementById("img1").classList.add('MyClass');
+            document.getElementById("popup-cart").classList.toggle('opencart');
+        }
+
+
+
+    }</script>

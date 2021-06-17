@@ -1,0 +1,144 @@
+﻿@using PagedList
+@using PagedList.Mvc
+
+
+
+@model PagedList.IPagedList<ModelEF.Model.loai_sp>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section Header{
+    <i class="fa" style="color: #fc05ff;">Quản Lý Menu Món Ăn</i>
+}
+@using (Html.BeginForm("Index", "LoaiSP", FormMethod.Get))
+{
+    <div class="col-lg-12 form-group">
+        <div class="row">
+            <div class="col-md-2">
+                <a class="btn btn-compose" href="javascript:history.go(-1)">Quay lại</a>
+            </div>
+            <div class="col-md-4">
+                <a class="btn btn-success" href="@Url.Action("Create","LoaiSP")">Create</a>
+            </div>
+
+            <div class="col-md-4">
+                <input type="search" value="@ViewBag.SearchString" name="searchString" placeholder="Nhập từ khóa cần tìm kiếm" class="form-control" />
+
+
+            </div>
+            <div class="col-md-2">
+                <input type="submit" value="Tìm kiếm" class="btn btn-danger" />
+
+            </div>
+        </div>
+
+    </div>
+}
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div class="card ">
+            <div class="card-header">
+                <h4 class="card-title">Menu</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th>STT</th>
+                            <th>Id</th>
+                            <th>Tên Loại</th>
+
+                            <th>
+                                Nội Dung
+                            </th>
+                           
+                            <th>Thao Tác</th>
+                        </tr>
+                        @{ var i = 1;}
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@i</td>
+                                <td>@item.ID</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                               
+                                <td class="thaotac" style="text-align: center;">
+                                    <a class="a" href="@Url.Action("Update", "LoaiSP", new { id = item.ID })"><i class='bx bxs-edit'></i></a>
+                                    <a class="a" @{ var cl = "cl"; cl = cl + i.ToString(); } id="@cl"><i class='bx bx-x-circle'></i></a>
+                                    <div id="AlertBox_@i" style="        border-radius: 0.2857rem; " class="col-xs-11 col-sm-4  alert-danger alert-with-icon slideNotify delete_none">
+
+                                        <div class=" card " style="        margin: 5px auto;box-shadow: 0 1px 20px 1px #000000;background-color: #fd77a4;">
+                                            <div class="card-header">
+                                                <h4 class="card-title"> Delete</h4>
+                                            </div>
+
+                                            <p>Bạn có muốn xóa Menu <b style="color:rgba(0, 255, 227, 0.87);">@item.Name</b> không?</p>
+                                            &nbsp;
+                                            <div class="col-lg-12 ">
+                                                <div class="row">
+                                                    <div class="col-md-4"></div>
+
+                                                    <div class="col-md-4">
+                                                        <a class="btn btn-compose" @{ var cl1 = "cl1"; cl1 = cl1 + i.ToString(); } id="@cl1">Hủy</a>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <a class="btn btn-success" href="@Url.Action("Delete","LoaiSP", new {id = item.ID })">Xóa</a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            &nbsp;
+                                        </div>
+                                    </div>
+                                    <script>
+
+                                document.getElementById("@cl").onclick = function () {
+                                    document.getElementById("AlertBox_@i").classList.toggle('delete_none');
+                                    document.getElementById("AlertBox_@i").classList.toggle('delete_block');
+
+                                        }
+                                         document.getElementById("@cl1").onclick = function () {
+                                    document.getElementById("AlertBox_@i").classList.toggle('delete_none');
+                                     document.getElementById("AlertBox_@i").classList.toggle('delete_block');
+
+                                        }
+
+                                    </script>
+                                </td>
+                            </tr>
+                            i++;
+                        }
+
+                    </table>
+                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.SearchString }))
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+   @* var tc = document.getElementById("tc");
+    tc.classList.remove("active");
+    var sp = document.getElementById("sp");
+    sp.classList.remove("active");
+    var tb = document.getElementById("tb");
+    tb.classList.remove("active");
+    var kh = document.getElementById("kh");
+    kh.classList.remove("active");
+    var hd = document.getElementById("hd");
+    hd.classList.remove("active");*@
+    var mn = document.getElementById("mn");
+    mn.classList.add("active");
+   @* var ph = document.getElementById("ph");
+    ph.classList.remove("active");
+    var m = document.getElementById("m");
+    m.classList.remove("active");*@
+</script>

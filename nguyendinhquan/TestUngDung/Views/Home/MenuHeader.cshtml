@@ -1,0 +1,227 @@
+﻿@using TestUngDung.Models;
+@using TestUngDung.common
+
+@model IEnumerable<ModelEF.Model.UserAccount>
+
+<div class="top1">
+    <div class="">
+        <div class="s-m11">
+            <ul>
+                <li><span><i class="fa fa-facebook"></i></span><a href="#">Facebook</a></li>
+                <li><span><i class="fa fa-twitter"></i></span><a href="#">Twitter</a></li>
+                <li><span><i class="fa fa-linkedin"></i></span><a href="#">Linkedin</a></li>
+                <li><span><i class="fa fa-instagram"></i></span><a href="#">Instagram</a></li>
+                <li><span><i class="fa fa-github"></i></span><a href="#">Github</a></li>
+            </ul>
+        </div>
+        <div class="info">
+            @*  <a id="email" href="">nguyenquan52000@gmail.com</a>
+                <a id="phone" href="">0373951042</a> *@
+            <div class="info">
+                <ul>
+                    <li><span><i class="fa fa-envelope"></i></span><a href="#">nguyenquan52000@gmail.com</a></li>
+                    <li><span><i class="fa fa-phone"></i></span><a href="#">0373951042</a></li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="atop1">
+
+
+            @{
+                var session = (Login)Session[Constants.USER_SESSION];
+                var status = 0;
+            }
+            @if (session != null)
+            {
+                <p>Xin chào,<strong> @session.UserName </strong>.</p><img style="vertical-align: middle;    background: #fff;    width: 30px;    border-radius: 30px;" src="~/Data/images/user-default.png">
+                <a href="#">Sửa thông tin</a>
+
+                foreach (var item in Model)
+                {
+                    if (item.Status == 1)
+                    {
+                        status = 1;
+                    }
+                }
+                if (status == 1)
+                {
+                    <a href="/admin">Trang quản trị</a>
+                }
+                <a href="@Url.Action("Logout", "Home")">Thoát ra </a>
+            }
+            else
+            {
+                <a href="@Url.Action("Index", "User")">Đăng nhập</a><a href="?thamso=dang_ky">Đăng ký</a>
+            }
+
+        </div>
+    </div>
+</div>
+<div id="wrapper">
+    <div class="menu">
+        <div class="logo"><a class="nf" title="Mew Food" href=""><span>NewFood</span></a> </div><nav>
+            <div class="nav-inner clearfix">
+                <ul id="nav" class=" nav_main">
+                    <li class="level0 parent"><a style="color: #fff;background: #18d864;border-radius: 5px;" href="@Url.Action("Index", "Home")" title="Trang chủ"><span>Trang chủ</span></a></li>
+                    <li class="level0 parent"><a href="?thamso=xuat_mot_tin&amp;id=1"><span>Giới thiệu</span></a></li>
+                    <li class="level0 parent">
+                        <a href="?thamso=xuat_san_pham_2"><span>Sản phẩm</span></a>                               <div class="level0-wrapper dropdown-6col">
+                            <div class="level0-wrapper2">
+                                <div class="nav-block nav-block-center">
+                                    <ul class="level0">
+                                        <li class="level1 parent item" style="height: 120px">
+                                            <a href="?thamso=xuat_san_pham_2" title="Dinh dưỡng"><span>Dinh dưỡng</span></a>
+                                            <ul class="level1">
+
+                                                <li class="level2"><a href="?thamso=xuat_san_pham_2" title="Phở"><span>Phở</span></a> </li>
+
+                                                <li class="level2"><a href="?thamso=xuat_san_pham_2" title="Bánh mì"><span>Bánh mì</span></a> </li>
+
+                                                <li class="level2"><a href="?thamso=xuat_san_pham_2" title="Cơm cà ri"><span>Cơm cà ri</span></a> </li>
+
+                                            </ul>
+                                        </li>
+
+
+
+                                        <li class="level1 parent item">
+                                            <a href="?thamso=xuat_san_pham_2" title="Không Gluten"><span>Không Gluten</span></a>
+                                            <ul class="level1">
+
+                                                <li class="level2"><a href="?thamso=xuat_san_pham_2" title="Salads"><span>Salads</span></a> </li>
+
+                                                <li class="level2"><a href="?thamso=xuat_san_pham_2" title="Mì xào"><span>Mì xào</span></a> </li>
+
+                                                <li class="level2"><a href="?thamso=xuat_san_pham_2" title="Tráng miệng"><span>Tráng miệng</span></a> </li>
+
+                                            </ul>
+                                        </li>
+
+
+
+                                        <li class="level1 item">
+                                            <a href="?thamso=xuat_san_pham_2" title="Allergens"><span>Allergens</span></a>
+
+
+
+                                        </li>
+                                        <li class="level1 item">
+                                            <a href="?thamso=xuat_san_pham_2" title="Thực đơn chay"><span>Thực đơn chay</span></a>
+
+
+                                        </li>
+                                    </ul>
+                                    <div class="banner_mega">
+                                        <img alt="Mew Food" class="lazyload loaded" src="hinh_anh/menu/bn_mg.jpg" data-src="bn_mg.jpg" data-was-processed="true">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="level0 parent"><a href="?thamso=xuat_mot_tin&amp;id=3"><span>Hướng dẫn</span></a></li>
+                    <li class="level0 parent"><a href="?thamso=xuat_mot_tin&amp;id=4"><span>Tin tức</span></a></li>
+                    <li class="level0 parent"><a href="?thamso=xuat_mot_tin&amp;id=5"><span>Liên hệ</span></a></li>
+                </ul>
+            </div>
+        </nav><div class="search_cart">
+
+
+
+
+
+
+            <div class="search-box mini-cart">
+                <div class="basket dropdown-toggle">
+                    <a href="@Url.Action("Index", "Cart")" title="Giỏ hàng">
+
+                        <img src="~/Data/images/cart_img_web.png" alt="Mew Food">
+                        <div class="cart-box">
+                            <span id="cart-total">
+                                <b class="count_item_pr">0</b>
+                            </span>
+                        </div>
+                    </a>
+                </div>
+
+
+
+                <div style="" class="top-cart-content arrow_box">
+                    <ul id="cart-sidebar" class="mini-products-list">
+                        <h5>Không có món ăn trong giỏ hàng</h5>
+                        <div class="tbody-popup scrollbar-dynamic"></div>
+                        <div class="tfoot-popup section">
+                            <div class="section footer-popup">
+
+                                <div class="tfoot-popup-1 f-right inline-block ">
+                                    <span class="total-p popup-total block">Thành tiền: <span class="total-price">0 VNĐ</span></span>
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+
+                <script>
+                    document.getElementById('ttmh').onclick = function () {
+                        //                   document.getElementById("popup-cart").classList.add('MyClass');
+                        if (document.getElementById("popup-cart").classList.contains('popcart')) {
+                            //                       document.getElementById("img1").classList.add('MyClass');
+                            document.getElementById("popup-cart").classList.toggle('opencart');
+                        }
+
+
+
+                    }</script>
+            </div>
+            <script>
+                document.getElementById('oclgh').onclick = function () {
+                    //                   document.getElementById("popup-cart").classList.add('MyClass');
+                    if (document.getElementById("popup-cart").classList.contains('popcart')) {
+                        //                       document.getElementById("img1").classList.add('MyClass');
+                        document.getElementById("popup-cart").classList.toggle('opencart');
+                    }
+
+
+
+                }
+            </script>
+
+
+
+            <div class="search-box search">
+                <div id="op_seach" class="open_search">
+
+                    <img src="~/Data/images/seach_img_web.png" alt="Mew Food">
+                </div>
+                <form id="search_mini_form" class="ops" action="" method="get">
+                    <input type="hidden" name="thamso" value="tim_kiem" class="form-control">
+                    <input type="text" name="tu_khoa" class="change_pl" placeholder="Tìm kiếm..." value="" maxlength="70" id="search">
+                    <button class="btn btn-default  search-btn-bg"> <img src="~/Data/images/seach_img_web.png" alt="Mew Food"></button>
+                </form>
+            </div>
+            <div class="clearfix"></div>
+            <script>
+                document.getElementById('op_seach').onclick = function () {
+                    //                   document.getElementById("popup-cart").classList.add('MyClass');
+
+                    document.getElementById("search_mini_form").classList.toggle('seachvisble');
+
+
+
+
+                }</script>
+            <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+            <script type="text/javascript">
+                $(document).on('click', 'op_seach', function () {
+                    $(this).addClass('seachvisble').siblings().removeClass('active')
+
+                })
+            </script>
+
+        </div>
+    </div>
+</div>

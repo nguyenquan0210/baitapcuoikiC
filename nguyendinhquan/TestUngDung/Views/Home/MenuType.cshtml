@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ModelEF.Model.loai_sp>
+
+
+
+
+
+<div class="page_a">
+    <section class="section-product section-product-tab ajax-product home_colection2_area lazy_bg" data-background="url(//bizweb.dktcdn.net/100/341/555/themes/786825/assets/bg_m_1.png?1603447030866)">
+        <div class="background__image"></div>
+        <div class="col-product-wrap js__background-change">
+            <div class="e-tabs2 not-dqtab ajax-tab-1" data-section="ajax-tab-1">
+                <div class="content">
+                    <div class="module-title">
+                        <div class="container1">
+                            <h3 class="bg_main"> Thực đơn</h3>
+                            <div class="tabs-title-ajax">
+                                <div class="title-desktop hidden-xs">
+                                    <h2><a href="/collections/all" title=""></a></h2>
+                                    <ul class="tabs tabs-title ajax clearfix hidden-xs">
+                                        @foreach (var item in Model)
+                                        {
+
+
+                                            <li class="tab-link has-content current bd-l-1" data-tab="tab-1" data-url="/khai-vi" style="width: 1000px;"> <a href="@Url.Action("Product","Home", new { searchString = item.ID })"><span>@item.Name</span></a></li>
+
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

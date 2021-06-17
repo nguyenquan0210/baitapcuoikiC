@@ -1,0 +1,144 @@
+﻿@model ModelEF.Model.san_pham
+
+@{
+    ViewBag.Title = "Detais";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section Header{
+    <i class="fa" style="color: #fc05ff;">Chi Tiết Sản Phẩm</i>
+}
+
+
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="card">
+            @*            <div class="card-header">
+                    <h5 class="title">Edit Profile</h5>
+                </div>*@
+            <div class="card-body">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.ValidationSummary(true, null, new { @class = "field-validation-error text-danger" })
+
+
+
+                    <div class="form-horizontal">
+                        <h4>Chi Tiết</h4>
+                        <hr />
+
+                        <div class="row">
+                            <div class="col-md-4 pr-md-1">
+                                <div class="form-group">
+                                    <label>Loại menu</label>
+
+                                    @Html.DropDownListFor(model => model.ID_l, (IEnumerable<SelectListItem>)ViewBag.MenuCategoryID,
+                                        "--Chọn Loại Menu--", new { @class = "form-control" , @readonly = "" })
+                                    
+
+                                </div>
+                            </div>
+                            <div class="col-md-4 pr-md-1">
+                                <div class="form-group">
+                                    <label>
+                                        Tên Sản Phẩm
+                                    </label>
+
+                                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @readonly = "" })
+                                    
+
+                                </div>
+                            </div>
+                            <div class="col-md-4 pr-md-1">
+                                <div class="form-group">
+                                    <label>
+                                        Giá
+                                    </label>
+
+                                    @Html.TextBoxFor(model => model.UnitCost, new { @class = "form-control", @readonly = "" })
+                                   
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 pr-md-1">
+                                <div class="form-group">
+                                    <label>
+                                        Nội dung
+                                    </label>
+
+                                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @readonly = "" })
+                                   
+
+                                </div>
+                            </div>
+                            <div class="col-md-4 pr-md-1">
+                                <label>
+                                    Hình Ảnh
+                                </label>
+                                <div class="row">
+
+                                    <div class=" col-md-4">
+                                        @{
+                                            var link_img = "/Data/images/product/";
+                                        }
+                                        <img src="@link_img@Model.Image" alt="">
+                                    </div>
+                                    <div class="col-md-8 ">
+                                        @Html.TextBoxFor(model => model.Image, new { @class = "form-control", @readonly = "" })
+                                       
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="col-md-4 pr-md-1">
+                                <div class="form-group">
+                                    <label>
+                                        Nổi bật
+                                    </label>
+
+                                    @Html.TextBoxFor(model => model.Status, new { @class = "form-control", @readonly = "" })
+                                    
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+
+
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-offset-2 col-md-8">
+
+                                </div>
+                                <div class="col-md-2">
+                                    <a class="btn btn-compose" href="javascript:history.go(-1)">Quay lại</a>
+                                </div>
+                                <div class="col-md-offset-2 col-md-2">
+                                    <a href="@Url.Action("Update", "QLSanPham", new { id = Model.ID })" class="btn btn-success">Chỉnh Sửa</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+</div>
+@*@{ Html.RenderAction("HoaDon", "QLSanPham");}
+@{ Html.RenderAction("BinhLuan", "QLSanPham");}*@
+<script>
+
+    var sp = document.getElementById("sp");
+    sp.classList.add("active");
+
+</script>

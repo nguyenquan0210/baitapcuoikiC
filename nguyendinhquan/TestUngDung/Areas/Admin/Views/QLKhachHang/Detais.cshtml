@@ -1,0 +1,114 @@
+﻿@model ModelEF.Model.UserAccount
+
+@{
+    ViewBag.Title = "Detais";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section Header{
+    <i class="fa" style="color: #fc05ff;">Chi Tiết Khách Hàng</i>
+}
+
+
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="card">
+            @*            <div class="card-header">
+                    <h5 class="title">Edit Profile</h5>
+                </div>*@
+            <div class="card-body">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.ValidationSummary(true, null, new { @class = "field-validation-error text-danger" })
+
+
+
+                    <div class="form-horizontal">
+                        <h4>Chi tiết Khách Hàng</h4>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-4 pr-md-1">
+                                <div class="form-group">
+                                    <label>ID Người Dùng</label>
+
+                                    @Html.TextBoxFor(model => model.ID, new { @class = "form-control", @readonly = "readonly" })
+                                    @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="col-md-4 pr-md-1">
+                                <div class="form-group">
+                                    <label>Tên Tài Khoản</label>
+
+                                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @readonly = "readonly" })
+                                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="col-md-4 pr-md-1">
+                                <div class="form-group">
+                                    <label>Trạng Thái</label>
+                                    @{var Status = "";
+                                        if (Model.Status == 0)
+                                        {
+                                            Status = "Bình thường";
+                                        }
+                                        else
+                                        {
+                                            if (Model.Status == 1)
+                                            {
+                                                Status = "Admin";
+
+                                            }
+                                            else
+                                            {
+                                                Status = "Bị chặn";
+                                            }
+                                        }
+                                    }
+                                    
+                                    @Html.TextBoxFor(model => Status, new { @class = "form-control", @readonly = "readonly" })
+                                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                        </div>
+                       
+
+
+
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-offset-2 col-md-8">
+
+                                </div>
+                                <div class="col-md-2">
+                                    <a class="btn btn-compose" href="javascript:history.go(-1)">Quay lại</a>
+                                </div>
+                                <div class="col-md-offset-2 col-md-2">
+                                    <a class="btn btn-success" href="@Url.Action("Create", "QLKhachHang", new { id = Model.ID })">Chỉnh sửa</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@*@{ Html.RenderAction("HoaDon", "QLKhachHang");}*@
+
+<script>
+
+    var kh = document.getElementById("kh");
+    kh.classList.add("active");
+
+</script>

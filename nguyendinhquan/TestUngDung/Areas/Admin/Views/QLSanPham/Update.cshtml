@@ -1,0 +1,221 @@
+﻿@model ModelEF.Model.san_pham
+
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section Header{
+    <i class="fa" style="color: #fc05ff;">Cập Nhật Sản Phẩm</i>
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="card">
+            @*            <div class="card-header">
+                    <h5 class="title">Edit Profile</h5>
+                </div>*@
+            <div class="card-body">
+                @using (Html.BeginForm("Update", "QLSanPham", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.ValidationSummary(true, null, new { @class = "field-validation-error text-danger" })
+
+
+
+                    <div class="form-horizontal">
+                        <h4>Cập Nhật</h4>
+                        <hr />
+
+                        <div class="row">
+                            <div class="col-md-4 pr-md-1">
+                                <div class="form-group">
+                                    <label>Loại menu</label>
+
+                                    @Html.DropDownListFor(model => model.ID_l, (IEnumerable<SelectListItem>)ViewBag.MenuCategoryID,
+                                        "--Chọn Loại Menu--", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ID_l, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="col-md-4 pr-md-1">
+                                <div class="form-group">
+                                    <label>
+                                        Tên Sản Phẩm
+                                    </label>
+
+                                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="col-md-4 pr-md-1">
+                                <div class="form-group">
+                                    <label>
+                                        Giá
+                                    </label>
+
+                                    @Html.TextBoxFor(model => model.UnitCost, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.UnitCost, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7 pr-md-1">
+                                <div class="form-group">
+                                    <label>
+                                        Nội dung
+                                    </label>
+
+                                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="col-md-5 pr-md-1">
+                                <div class="form-group">
+                                    @*<label>
+                                            Hình Ảnh
+                                        </label>
+
+                                        @Html.TextBoxFor(model => model.hinh_anh, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.hinh_anh, "", new { @class = "text-danger" })*@
+                                    <div class="row">
+                                        <div class="form-group last">
+                                            <label class="control-label col-md-12">Hình ảnh</label>
+                                            <div class="col-md-12">
+                                                <div class="fileupload fileupload-new row" data-provides="fileupload">
+                                                    <div class="fileupload-new thumbnail form-control" style="width: 200px; height: 150px;">
+                                                        <img id="src_img" src="~/Data/images/product/@Model.Image" alt="" />
+                                                    </div>
+                                                    <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                                    <div>
+                                                        <input htmlattributes="{ class = form-control, id = txtImage }" class="form-control" readonly data-val="true" data-val-length="The field hinh_anh must be a string with a maximum length of 50." data-val-length-max="50" data-val-required="The hinh_anh field is required." id="txtImage" name="Image" type="text" value="@Model.Image">
+
+                                                        <span id="change_img" class="btn btn-white btn-file">
+                                                            <span id="sleted" class="fileupload-new delete_block"><i class="fa fa-paper-clip"></i> Chọn ảnh</span>
+                                                            <span id="change" class="fileupload-exists delete_none"><i class="fa fa-undo"></i> Thay đổi</span>
+                                                            @*<input type="file" class="default" />*@
+                                                        </span>
+                                                        <a href="#" id="remove" class="btn btn-danger fileupload-exists delete_none" data-dismiss="fileupload"><i class="fa fa-trash"></i> tẩy</a>
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                                                </div>
+                                                <span class="label label-danger"></span>
+                                                <span>
+
+                                                </span>
+                                            </div>
+                                        </div>
+                                        @*<div class="form-group">
+                                                <label>Hình đại diện sản phẩm</label>
+                                                @Html.TextBoxFor(model => model.hinh_anh, new
+                                                {
+                                                    htmlAttributes = new { @class = "form-control", @id = "txtImage" },
+                                                    id = "txtImage"
+                                                })
+                                                <a id="btnSelectImage" href="#" class="btn btn-primary">Chọn hình đại diện</a>
+                                                <p>@Html.ValidationMessageFor(model => model.hinh_anh, "", new { @class = "text-danger" })</p>
+                                            </div>*@
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4 pr-md-1">
+                                <div class="form-group">
+                                    <label>
+                                        Nổi bật
+                                    </label>
+
+                                    @Html.TextBoxFor(model => model.Status, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-offset-2 col-md-8">
+
+                                </div>
+                                <div class="col-md-2">
+                                    <a class="btn btn-compose" href="javascript:history.go(-1)">Quay lại</a>
+                                </div>
+                                <div class="col-md-offset-2 col-md-2">
+                                    <input type="submit" value="Cập Nhật" class="btn btn-success" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+
+    var sp = document.getElementById("sp");
+    sp.classList.add("active");
+
+</script>
+
+@section jsFooter{
+    <script>
+
+        document.getElementById("change_img").onclick = function () {
+            document.getElementById("sleted").classList.add('delete_none');
+            document.getElementById("sleted").classList.remove('delete_block');
+            document.getElementById("change").classList.remove('delete_none');
+
+            document.getElementById("remove").classList.remove('delete_none');
+
+        }
+        document.getElementById("remove").onclick = function () {
+            document.getElementById("sleted").classList.remove('delete_none');
+            document.getElementById("sleted").classList.add('delete_block');
+            document.getElementById("change").classList.add('delete_none');
+
+            document.getElementById("remove").classList.add('delete_none');
+            $('#txtImage').val("");
+            document.getElementById('src_img').src = "";
+
+        }
+
+    </script>
+
+    <script>
+        $('#change_img').on('click', function (e) {
+            e.preventDefault();
+            var finder = new CKFinder();
+
+            finder.selectActionFunction = function (url) {
+
+                document.getElementById('src_img').src = url;
+                var a = url.replace('/Data/images/product/', '');
+
+
+                $('#txtImage').val(a);
+            };
+
+            finder.popup();
+        })
+
+        //$(document).ready(function () {
+        //    CKEDITOR.replace('ckeditor');
+        //});
+        var editor = CKEDITOR.replace('txtContent', {
+            customConfig: '/ckeditor/config.js',
+            htmlEncodeOutput: true
+        });
+    </script>
+}

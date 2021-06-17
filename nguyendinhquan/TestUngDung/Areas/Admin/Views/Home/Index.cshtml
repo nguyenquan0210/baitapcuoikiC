@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section Header{
+    <i class="fa" style="color: #fc05ff;">&nbsp; Trang Quản Trị</i>
+}
+@*@{ Html.RenderAction("DanhMuc_chart", "Home");}*@
+@*@{ Html.RenderAction("HoaDon_chart", "Home");}*@
+<div class="row">
+    <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+        <div class="font-icon-detail" onclick="window.location.href='@Url.Action("Index", "QLKhachHang")'">
+
+            <i class='bx bxs-user-detail'></i>
+            <p>Quản Lý Khách Hàng</p>
+
+        </div>
+    </div>
+    <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+        <div class="font-icon-detail" onclick="window.location.href='@Url.Action("Index", "QLSanPham")'">
+            <i class='bx bxs-devices'></i>
+            <p>Quản Lý Sản Phẩm</p>
+        </div>
+    </div>
+    <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+        <div class="font-icon-detail" onclick="window.location.href='@Url.Action("Index", "HoaDon")'">
+            <i class='bx bxs-note'></i>
+            <p>Quản Lý Hóa Đơn</p>
+        </div>
+    </div>
+    <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+        <div class="font-icon-detail" onclick="window.location.href='@Url.Action("Index", "PhanHoiSP")'">
+            <i class='bx bxs-notepad'></i>
+            <p>Phản Hồi Sản Phẩm</p>
+        </div>
+    </div>
+    <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+        <div class="font-icon-detail" onclick="window.location.href='@Url.Action("Index", "ThongBao")'">
+            <i class='bx bxs-bell'></i>
+            <p>Thông báo</p>
+        </div>
+    </div>
+    <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+        <div class="font-icon-detail" onclick="window.location.href='@Url.Action("Index", "LoaiSP")'">
+            <i class='bx bx-food-menu'></i>
+            <p>Danh mục món ăn</p>
+        </div>
+    </div>
+</div>
+
+@*@{ Html.RenderAction("HoaDon", "Home");}*@
+
+<script>
+    var tc = document.getElementById("tc");
+    tc.classList.add("active");
+   @* var sp = document.getElementById("sp");
+    sp.classList.remove("active");
+    var tb = document.getElementById("tb");
+    tb.classList.remove("active");
+    var kh = document.getElementById("kh");
+    kh.classList.remove("active");
+    var hd = document.getElementById("hd");
+    hd.classList.remove("active");
+    var mn = document.getElementById("mn");
+    mn.classList.remove("active");
+    var ph = document.getElementById("ph");
+    ph.classList.remove("active");
+    var m = document.getElementById("m");
+    m.classList.remove("active");*@
+</script>
